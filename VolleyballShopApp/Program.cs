@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using VolleyballShopApp.Data;
+using VolleyballShopApp.Infrastructure.Data;
 
 namespace VolleyballShopApp
 {
