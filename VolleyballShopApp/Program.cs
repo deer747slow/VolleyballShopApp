@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using VolleyballShopApp.Infrastructure.Data;
 using VolleyballShopApp.Infrastructure.Data.Entities;
+using VolleyballShopApp.Infrastructure.Data.Infrastructure;
 
 namespace VolleyballShopApp
 {
@@ -26,11 +27,13 @@ namespace VolleyballShopApp
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequiredLength = 5;
             })
+                .AddRoles<IdenttityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
+            app.PrepareDatabase();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
