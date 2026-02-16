@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolleyballShopApp", "Volley
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolleyballShopApp.Infrastructure", "VolleyballShopApp.Infrastructure\VolleyballShopApp.Infrastructure.csproj", "{75C5048D-ED44-4CE8-8A5A-3EBA3D95A8FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolleyballShopApp.Core", "VolleyballShopApp.Core\VolleyballShopApp.Core.csproj", "{6C6EFAFC-DD30-4196-A11A-EBD7A20E5F98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{75C5048D-ED44-4CE8-8A5A-3EBA3D95A8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75C5048D-ED44-4CE8-8A5A-3EBA3D95A8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75C5048D-ED44-4CE8-8A5A-3EBA3D95A8FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C6EFAFC-DD30-4196-A11A-EBD7A20E5F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6EFAFC-DD30-4196-A11A-EBD7A20E5F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6EFAFC-DD30-4196-A11A-EBD7A20E5F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6EFAFC-DD30-4196-A11A-EBD7A20E5F98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

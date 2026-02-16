@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
+using VolleyballShopApp.Core.Contracts;
+using VolleyballShopApp.Core.Services;
 using VolleyballShopApp.Infrastructure.Data;
 using VolleyballShopApp.Infrastructure.Data.Entities;
 using VolleyballShopApp.Infrastructure.Data.Infrastructure;
@@ -15,7 +18,8 @@ namespace VolleyballShopApp
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            options.UseLazyLoadingProxies()
+            .UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
@@ -27,12 +31,14 @@ namespace VolleyballShopApp
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequiredLength = 5;
             })
-                .AddRoles<IdenttityRole>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
+            builder.Services.AddTransient<ICategoryService, CategoryService>();
+            builder.Services.AddTransient<IBrandService, BrandService>();
 
+            var app = builder.Build();
             app.PrepareDatabase();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
