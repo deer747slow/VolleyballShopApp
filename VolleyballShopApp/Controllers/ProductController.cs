@@ -36,6 +36,7 @@ namespace VolleyballShopApp.Controllers
                     CategoryId = product.CategoryId,
                     CategoryName = product.Category.CategoryName,
                     Picture = product.Picture,
+                    Description = product.Description,
                     Quantity = product.Quantity,
                     Price = product.Price,
                     Discount = product.Discount
@@ -62,6 +63,7 @@ namespace VolleyballShopApp.Controllers
                 CategoryId = item.CategoryId,
                 CategoryName = item.Category.CategoryName,
                 Picture = item.Picture,
+                Description = item.Description,
                 Quantity = item.Quantity,
                 Price = item.Price,
                 Discount = item.Discount
@@ -97,7 +99,7 @@ namespace VolleyballShopApp.Controllers
             if (ModelState.IsValid)
             {
                 var createdId = _productService.Create(product.ProductName, product.BrandId,
-                product.CategoryId, product.Picture,
+                product.CategoryId, product.Picture,product.Description,
                 product.Quantity, product.Price, product.Discount);
                 if (createdId)
                 {
@@ -124,6 +126,7 @@ namespace VolleyballShopApp.Controllers
                 BrandId = product.BrandId,
                 CategoryId = product.CategoryId,
                 Picture = product.Picture,
+                Description = product.Description,
                 Quantity = product.Quantity,
                 Price = product.Price,
                 Discount = product.Discount
@@ -144,7 +147,7 @@ namespace VolleyballShopApp.Controllers
             if (ModelState.IsValid)
             {
                 var updated = _productService.Update(id, product.ProductName, product.BrandId,
-                    product.CategoryId, product.Picture, product.Quantity, product.Price, product.Discount);
+                    product.CategoryId, product.Picture,product.Description, product.Quantity, product.Price, product.Discount);
                 if (updated)
                 {
                     return RedirectToAction("Index");
@@ -171,6 +174,7 @@ namespace VolleyballShopApp.Controllers
                 CategoryId = item.CategoryId,
                 CategoryName = item.Category.CategoryName,
                 Picture = item.Picture,
+                Description = item.Description,
                 Quantity = item.Quantity,
                 Price = item.Price,
                 Discount = item.Discount
@@ -193,6 +197,10 @@ namespace VolleyballShopApp.Controllers
             {
                 return View();
             }
+        }
+        public IActionResult Success()
+        {
+            return View();
         }
     }
 }

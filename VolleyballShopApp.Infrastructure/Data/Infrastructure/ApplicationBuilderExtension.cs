@@ -81,13 +81,12 @@ namespace VolleyballShopApp.Infrastructure.Data.Infrastructure
             dataCategory.Categories.AddRange(new[]
             {
 
-            new Category {CategoryName="Laptop"},
-            new Category {CategoryName="Computer"},
-            new Category {CategoryName="Monitor"},
-            new Category {CategoryName="Accessory"},
-            new Category {CategoryName="TV"},
-            new Category {CategoryName="Mobile phone"},
-            new Category {CategoryName="Smart watch"}
+            new Category { CategoryName = "Volleyball Balls" },
+            new Category { CategoryName = "Volleyball Shoes" },
+            new Category { CategoryName = "Volleyball Jerseys" },
+            new Category { CategoryName = "Knee Pads" },
+            new Category { CategoryName = "Volleyball Nets" },
+            new Category { CategoryName = "Accessories" }
             });
 
             dataCategory.SaveChanges();
@@ -101,14 +100,14 @@ namespace VolleyballShopApp.Infrastructure.Data.Infrastructure
 
             dataBrand.Brands.AddRange(new[]
             {
-        new Brand {BrandName="Acer"},
-        new Brand {BrandName="Asus"},
-        new Brand {BrandName="Apple"},
-        new Brand {BrandName="Dell"},
-        new Brand {BrandName="HP"},
-        new Brand {BrandName="Huawei"},
-        new Brand {BrandName="Lenovo"},
-        new Brand {BrandName="Samsung"},
+            new Brand { BrandName = "Mikasa" },
+            new Brand { BrandName = "Molten" },
+            new Brand { BrandName = "Asics" },
+            new Brand { BrandName = "Mizuno" },
+            new Brand { BrandName = "Adidas" },
+            new Brand { BrandName = "Nike" },
+            new Brand { BrandName = "Wilson" },
+            new Brand { BrandName = "Puma" }
     });
 
             dataBrand.SaveChanges();

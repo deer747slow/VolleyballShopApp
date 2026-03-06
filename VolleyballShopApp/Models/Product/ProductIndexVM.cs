@@ -21,6 +21,9 @@ namespace VolleyballShopApp.Models.Product
         [Display(Name = "Picture")]
         public string Picture { get; set; }
 
+        [Display(Name = "Description")]
+        public string Description { get; set; } = null!;
+
         [Display(Name = "Quantity")]
         public int Quantity { get; set; }
 
