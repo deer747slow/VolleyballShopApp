@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace VolleyballShopApp.Core.Contracts
 {
-    internal interface IStatisticsService
+    public interface IStatisticService
     {
+        int CountProducts();
+        int CountClients();
+        int CountOrders();
+        decimal SumOrders();
     }
 }

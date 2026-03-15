@@ -1,12 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VolleyballShopApp.Core.Contracts;
+using VolleyballShopApp.Models.Statistic;
 
 namespace VolleyballShopApp.Controllers
 {
-    public class StatisticsController : Controller
+    public class StatisticController : Controller
     {
+        private readonly IStatisticService statisticsService;
+
+        public StatisticController(IStatisticService statisticsService)
+        {
+            this.statisticsService = statisticsService;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            StatisticVM statistics = new StatisticVM();
+
+            statistics.CountClients = statisticsService.CountClients();
+            statistics.CountProducts = statisticsService.CountProducts();
+            statistics.CountOrders = statisticsService.CountOrders();
+            statistics.SumOrders = statisticsService.SumOrders();
+
+            return View(statistics);
         }
     }
 }
