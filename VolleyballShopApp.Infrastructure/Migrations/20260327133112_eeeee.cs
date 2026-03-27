@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VolleyballShopApp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class ini : Migration
+    public partial class eeeee : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
