@@ -101,6 +101,10 @@
                     }
                 </td>
             </tr>
+            <form asp-controller="Favorites" asp-action="Add" method="post">
+                <input type="hidden" name="productId" value="@item.Id" />
+                <button type="submit">❤️ Любими</button>
+            </form>
         }
     </tbody>
 </table>
