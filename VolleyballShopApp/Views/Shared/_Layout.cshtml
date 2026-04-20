@@ -1,87 +1,190 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - VolleyballShopApp</title>
+    <title>@ViewData["Title"] - VolleyballShop</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/VolleyballShopApp.styles.css" asp-append-version="true" />
+
+    <style>
+        body {
+            background-color: #f4f6fb;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #0a1f44;
+        }
+
+        .navbar-brand {
+            color: #ffd60a !important;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+
+            .nav-link:hover {
+                color: #ffd60a !important;
+            }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #0a1f44, #123a7a);
+            color: white;
+            padding: 60px 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .hero h1 {
+                font-size: 42px;
+                font-weight: bold;
+            }
+
+            .hero p {
+                color: #dcdcdc;
+                font-size: 18px;
+            }
+
+        /* БУТОНИ */
+        .btn-main {
+            background-color: #ffd60a;
+            color: black;
+            border: none;
+            font-weight: bold;
+            padding: 10px 25px;
+            border-radius: 25px;
+        }
+
+            .btn-main:hover {
+                background-color: #e6c200;
+            }
+
+        /* DROPDOWN */
+        .dropdown-menu {
+            border-radius: 10px;
+        }
+
+        /* КОНТЕЙНЕР */
+        .content-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0a1f44;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+            footer a {
+                color: #ffd60a;
+            }
+
+    </style>
 </head>
+
 <body>
+
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">VolleyballShopApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-lg shadow">
+            <div class="container">
+
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    🏐 VolleyballShop
+                </a>
+
+                <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#nav">
+                    ☰
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="MyOrders">My Orders</a>
-                        </li>
-                        <li class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                Products
-                            </button>
 
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Mikasa">MIKASA</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Molten">MOLTEN</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Asics">ASICS</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Mizuno">MIZUNO</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Adidas">ADIDAS</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Nike">NIKE</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Wilson">WILSON</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Puma">PUMA</a></li>
+                <div class="collapse navbar-collapse" id="nav">
+
+                    <ul class="navbar-nav me-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Начало</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Product" asp-action="Index">Продукти</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Order" asp-action="MyOrders">Моите поръчки</a>
+                        </li>
+
+                        <!-- БРАНДОВЕ -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Марки</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Mikasa">MIKASA</a></li>
+                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Molten">MOLTEN</a></li>
+                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Asics">ASICS</a></li>
+                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Mizuno">MIZUNO</a></li>
+                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Nike">NIKE</a></li>
                             </ul>
-
                         </li>
+
                         @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
                         {
-                            <li class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    Statistic Modul
-                                </button>
-
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="/Client/Index">Clients</a></li>
-                                    <li><a class="dropdown-item" href="/Order/Index">Orders</a></li>
-                                    <li><a class="dropdown-item" href="/Statistic/Index">Statistic</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Админ</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/Client/Index">Клиенти</a></li>
+                                    <li><a class="dropdown-item" href="/Order/Index">Поръчки</a></li>
+                                    <li><a class="dropdown-item" href="/Statistic/Index">Статистика</a></li>
                                 </ul>
-
                             </li>
                         }
+
                     </ul>
+
                     <partial name="_LoginPartial" />
+
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+        <!-- HERO -->
+        <div class="hero">
+            <h1>Играй като професионалист 🏐</h1>
+            <p>Най-добрата екипировка за волейбол на едно място</p>
+            <a href="/Product" class="btn btn-main mt-3">Разгледай продуктите</a>
+        </div>
+
+        <!-- СЪДЪРЖАНИЕ -->
+        <div class="content-box">
+            <main>
+                @RenderBody()
+            </main>
+        </div>
+
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer>
         <div class="container">
-            &copy; 2026 - VolleyballShopApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2026 VolleyballShop |
+            <a asp-controller="Home" asp-action="Privacy">Поверителност</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
