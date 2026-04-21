@@ -1,69 +1,125 @@
-﻿﻿
-@model VolleyballShopApp.Models.Product.ProductDetailsVM
+﻿@model VolleyballShopApp.Models.Product.ProductDetailsVM
 @{
     ViewData["Title"] = "Details";
 }
-<h1>Details</h1>
-<div>
-    <h4>ProductDetailsVM</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BrandName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BrandName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="@Html.DisplayFor(model => model.Picture)" alt="Image"
-                 width="100" />
-            @*@Html.DisplayFor(model => model.Picture)*@
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-    </dl>
+
+<style>
+    .product-details-box {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .product-image-box {
+        background: #f8f9fc;
+        border-radius: 14px;
+        padding: 20px;
+        text-align: center;
+    }
+
+        .product-image-box img {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+    .product-title {
+        color: #0a1f44;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .details-list dt {
+        font-weight: 600;
+        color: #0a1f44;
+    }
+
+    .details-list dd {
+        margin-bottom: 15px;
+    }
+</style>
+
+<h1 class="mb-4">Details</h1>
+
+<div class="product-details-box">
+    <div class="row g-4">
+
+        <!-- СНИМКА -->
+        <div class="col-md-4">
+            <div class="product-image-box">
+                <img src="@Html.DisplayFor(model => model.Picture)" alt="Image" />
+            </div>
+        </div>
+
+        <!-- ИНФОРМАЦИЯ -->
+        <div class="col-md-8">
+
+            <h4 class="product-title">ProductDetailsVM</h4>
+            <hr />
+
+            <dl class="row details-list">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ProductName)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.BrandName)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.BrandName)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.CategoryName)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Discount)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Discount)
+                </dd>
+            </dl>
+
+            <!-- БУТОНИ -->
+            <div class="mt-3">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-dark">Edit</a>
+                <a asp-action="Index" class="btn btn-main">Back to List</a>
+            </div>
+
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

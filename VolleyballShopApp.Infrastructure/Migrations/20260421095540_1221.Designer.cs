@@ -12,8 +12,8 @@ using VolleyballShopApp.Infrastructure.Data;
 namespace VolleyballShopApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260421091716_fftr")]
-    partial class fftr
+    [Migration("20260421095540_1221")]
+    partial class _1221
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

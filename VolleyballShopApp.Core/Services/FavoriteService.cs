@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,28 +15,58 @@ namespace VolleyballShopApp.Core.Services
     public class FavoriteService : IFavoriteService
     {
         private readonly ApplicationDbContext _context;
-        public FavoriteService(ApplicationDbContext context)
+
+       public FavoriteService(ApplicationDbContext context)
         {
             _context = context;
         }
+
         public bool AddToFavorites(string userId, int productId)
         {
-            throw new NotImplementedException();
+            if (IsFavorite(userId, productId))
+            {
+                return false;
+            }
+
+            var product = _context.Products.Find(productId);
+            if (product == null)
+            {
+                return false;
+            }
+
+            _context.Favorites.Add(new Favorite
+            {
+                ProductId = productId,
+                UserId = userId
+            });
+
+            return _context.SaveChanges() != 0;
         }
 
         public List<Favorite> GetFavorites(string userId)
         {
-            throw new NotImplementedException();
+            return _context.Favorites
+                .Include(f => f.Product)
+                .Where(f => f.UserId == userId)
+                .ToList();
         }
 
         public bool IsFavorite(string userId, int productId)
         {
-            throw new NotImplementedException();
+            return _context.Favorites
+                .Any(f => f.UserId == userId && f.ProductId == productId);
         }
 
         public bool RemoveFromFavorites(string userId, int productId)
         {
-            throw new NotImplementedException();
+            var item = _context.Favorites
+        .SingleOrDefault(f => f.ProductId == productId && f.UserId == userId);
+
+            if (item == null) return false;
+
+            _context.Favorites.Remove(item);
+            return _context.SaveChanges() != 0;
+
         }
     }
 }
