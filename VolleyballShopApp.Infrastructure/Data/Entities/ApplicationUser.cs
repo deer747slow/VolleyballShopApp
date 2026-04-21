@@ -22,5 +22,8 @@ namespace VolleyballShopApp.Infrastructure.Data.Entities
         [Required]
         [MaxLength(30)]
         public string Address { get; set; } = null!;
+
+        public virtual IEnumerable<Favorite> Favorites { get; set; } = new List<Favorite>();
+
     }
 }

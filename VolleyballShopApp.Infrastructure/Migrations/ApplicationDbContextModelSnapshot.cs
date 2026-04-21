@@ -278,6 +278,21 @@ namespace VolleyballShopApp.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("VolleyballShopApp.Infrastructure.Data.Entities.Favorite", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Favorites");
+                });
+
             modelBuilder.Entity("VolleyballShopApp.Infrastructure.Data.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -410,6 +425,25 @@ namespace VolleyballShopApp.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("VolleyballShopApp.Infrastructure.Data.Entities.Favorite", b =>
+                {
+                    b.HasOne("VolleyballShopApp.Infrastructure.Data.Entities.Product", "Product")
+                        .WithMany("Favorites")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VolleyballShopApp.Infrastructure.Data.Entities.ApplicationUser", "User")
+                        .WithMany("Favorites")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("VolleyballShopApp.Infrastructure.Data.Entities.Order", b =>
                 {
                     b.HasOne("VolleyballShopApp.Infrastructure.Data.Entities.Product", "Product")
@@ -448,6 +482,11 @@ namespace VolleyballShopApp.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("VolleyballShopApp.Infrastructure.Data.Entities.ApplicationUser", b =>
+                {
+                    b.Navigation("Favorites");
+                });
+
             modelBuilder.Entity("VolleyballShopApp.Infrastructure.Data.Entities.Brand", b =>
                 {
                     b.Navigation("Products");
@@ -460,6 +499,8 @@ namespace VolleyballShopApp.Infrastructure.Migrations
 
             modelBuilder.Entity("VolleyballShopApp.Infrastructure.Data.Entities.Product", b =>
                 {
+                    b.Navigation("Favorites");
+
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

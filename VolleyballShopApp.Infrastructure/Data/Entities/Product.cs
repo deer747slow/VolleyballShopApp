@@ -38,5 +38,6 @@ namespace VolleyballShopApp.Infrastructure.Data.Entities
         public decimal Discount { get; set; }
 
         public virtual IEnumerable<Order> Orders { get; set; } = new List<Order>();
+        public virtual IEnumerable<Favorite> Favorites { get; set; } = new List<Favorite>();
     }
 }
