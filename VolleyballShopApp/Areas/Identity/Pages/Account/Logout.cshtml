@@ -4,18 +4,113 @@
     ViewData["Title"] = "Log out";
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    @{
-        if (User.Identity?.IsAuthenticated ?? false)
-        {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
-            </form>
-        }
-        else
-        {
-            <p>You have successfully logged out of the application.</p>
-        }
+<style>
+    .logout-wrapper {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 15px;
     }
-</header>
+
+    .logout-card {
+        width: 100%;
+        max-width: 500px;
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .logout-top {
+        background: linear-gradient(135deg, #0a1f44, #123a7a);
+        color: white;
+        padding: 35px 25px;
+    }
+
+        .logout-top h1 {
+            margin: 0;
+            font-weight: 800;
+            font-size: 2rem;
+        }
+
+    .logout-icon {
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+    .logout-body {
+        padding: 30px;
+    }
+
+    .logout-text {
+        color: #555;
+        margin-bottom: 25px;
+        font-size: 17px;
+    }
+
+    .logout-btn {
+        background: linear-gradient(135deg, #ffd60a, #f4b400);
+        color: #111;
+        border: none;
+        border-radius: 35px;
+        padding: 12px 25px;
+        font-weight: 800;
+        box-shadow: 0 8px 18px rgba(255,214,10,0.30);
+        transition: 0.2s ease;
+    }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            color: #111;
+            background: linear-gradient(135deg, #ffe14a, #f4be00);
+        }
+
+    .logout-success {
+        color: #198754;
+        font-weight: 700;
+    }
+</style>
+
+<div class="logout-wrapper">
+    <div class="logout-card">
+
+        <div class="logout-top">
+            <div class="logout-icon">👋</div>
+            <h1>Изход</h1>
+        </div>
+
+        <div class="logout-body">
+
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <p class="logout-text">
+                    Сигурен ли си, че искаш да излезеш от акаунта си?
+                </p>
+
+                <form asp-area="Identity"
+                      asp-page="/Account/Logout"
+                      asp-route-returnUrl="@Url.Page("/", new { area = "" })"
+                      method="post">
+
+                    <button type="submit" class="logout-btn">
+                        Излез от акаунта
+                    </button>
+                </form>
+            }
+            else
+            {
+                <p class="logout-success">
+                    ✅ Успешно излезе от профила си!
+                </p>
+
+                <a asp-controller="Home" asp-action="Index" class="logout-btn mt-3 d-inline-block">
+                    Обратно към началото
+                </a>
+            }
+
+        </div>
+
+    </div>
+</div>

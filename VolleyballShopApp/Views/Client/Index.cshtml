@@ -1,57 +1,116 @@
 ﻿@model IEnumerable<VolleyballShopApp.Models.Client.ClientIndexVM>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Clients";
 }
 
-<h1>Clients</h1>
+<style>
+    .clients-title {
+        color: #0a1f44;
+        font-weight: 800;
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
+    .clients-box {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    }
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
+    .clients-table thead {
+        background: linear-gradient(135deg, #0a1f44, #123a7a);
+        color: white;
+        font-size: 16px;
+    }
 
-                <td>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger">Delete</a>
-                </td>
-            </tr>
+    .clients-table th {
+        padding: 14px;
+        border: none;
+    }
+
+    .clients-table td {
+        vertical-align: middle;
+        padding: 14px;
+    }
+
+    .clients-table tbody tr {
+        transition: 0.2s ease;
+    }
+
+        .clients-table tbody tr:hover {
+            background: #f5f8fc;
+            transform: scale(1.01);
         }
-    </tbody>
-</table>
+
+    .btn-delete-custom {
+        background: linear-gradient(135deg, #ff4d4f, #c82333);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 8px 18px;
+        font-weight: 700;
+        transition: 0.2s ease;
+        text-decoration: none;
+    }
+
+        .btn-delete-custom:hover {
+            background: linear-gradient(135deg, #ff6b6b, #a71d2a);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+    .empty-clients {
+        text-align: center;
+        padding: 40px;
+        color: #6c757d;
+    }
+</style>
+
+<h1 class="clients-title">👥 Клиенти</h1>
+
+<div class="clients-box">
+
+    @if (!Model.Any())
+    {
+        <div class="empty-clients">
+            <h4>Няма налични клиенти.</h4>
+        </div>
+    }
+    else
+    {
+        <table class="table clients-table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                    <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Address)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th class="text-center">Действие</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+
+                        <td class="text-center">
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn-delete-custom">
+                                🗑 Изтрий
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</div>

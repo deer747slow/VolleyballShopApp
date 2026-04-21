@@ -5,31 +5,135 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1 class="text-center">Log in</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.UserName" class="form-label"></label>
-                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">Password</label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                
-            </form>
-        </section>
+<style>
+    .login-page-wrapper {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 15px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 500px;
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+        overflow: hidden;
+    }
+
+    .login-card-top {
+        background: linear-gradient(135deg, #0a1f44, #123a7a);
+        padding: 35px 25px;
+        text-align: center;
+        color: white;
+    }
+
+        .login-card-top h1 {
+            margin: 0;
+            font-weight: 800;
+            font-size: 2.2rem;
+        }
+
+        .login-card-top p {
+            margin-top: 10px;
+            margin-bottom: 0;
+            color: #dce6f7;
+            font-size: 1.05rem;
+        }
+
+    .login-card-body {
+        padding: 35px 30px;
+    }
+
+    .login-subtitle {
+        color: #0a1f44;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .login-card .form-control {
+        border-radius: 14px;
+        min-height: 58px;
+        border: 1px solid #d7dee8;
+    }
+
+        .login-card .form-control:focus {
+            border-color: #123a7a;
+            box-shadow: 0 0 0 0.2rem rgba(18,58,122,0.12);
+        }
+
+    .login-btn {
+        background: linear-gradient(135deg, #ffd60a, #f4b400);
+        color: #111;
+        border: none;
+        border-radius: 35px;
+        font-weight: 800;
+        padding: 14px 20px;
+        box-shadow: 0 8px 18px rgba(255,214,10,0.30);
+        transition: 0.2s ease;
+    }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            color: #111;
+            background: linear-gradient(135deg, #ffe14a, #f4be00);
+        }
+
+    .login-icon {
+        font-size: 48px;
+        margin-bottom: 12px;
+    }
+
+    .login-divider {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, #d7dee8, transparent);
+        margin: 18px 0 24px 0;
+    }
+</style>
+
+<div class="login-page-wrapper">
+    <div class="login-card">
+
+        <div class="login-card-top">
+            <div class="login-icon">🏐</div>
+            <h1>Вход</h1>
+            <p>Добре дошъл обратно във VolleyballShop</p>
+        </div>
+
+        <div class="login-card-body">
+            <section>
+                <form id="account" method="post">
+                    <h2 class="login-subtitle">Влез в своя акаунт</h2>
+
+                    <hr class="login-divider" />
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger text-center mb-3" role="alert"></div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Потребителско име" />
+                        <label asp-for="Input.UserName" class="form-label"></label>
+                        <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Парола" />
+                        <label asp-for="Input.Password" class="form-label">Password</label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg login-btn">
+                            Влез в акаунта
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
     </div>
 </div>
 

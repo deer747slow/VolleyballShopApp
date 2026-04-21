@@ -42,12 +42,8 @@ namespace VolleyballShopApp
             builder.Services.AddTransient<IStatisticService, StatisticService>();
             builder.Services.AddTransient<IFavoriteService, FavoriteService>();
 
-            builder.Services.AddDistributedMemoryCache();
-            builder.Services.AddSession();
-            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
-            app.UseSession();
             app.PrepareDatabase();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
