@@ -2,8 +2,38 @@
     ViewData["Title"] = "Denied";
 }
 
-<h1>Insufficient availability</h1>
+<style>
+    .denied-box {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        margin-top: 30px;
+    }
 
-<div>
-    <a asp-controller="Product" asp-action="Index">Back to list of products</a>
+    .denied-title {
+        color: #dc3545;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .denied-icon {
+        font-size: 50px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="denied-box">
+
+    <div class="denied-icon">❌</div>
+
+    <h1 class="denied-title">Insufficient availability</h1>
+
+    <div class="mt-3">
+        <a asp-controller="Product" asp-action="Index" class="btn btn-main">
+            Back to list of products
+        </a>
+    </div>
+
 </div>

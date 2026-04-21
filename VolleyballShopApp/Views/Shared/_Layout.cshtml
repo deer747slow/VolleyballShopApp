@@ -119,22 +119,64 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contacts">Контакти</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" asp-controller="Product" asp-action="Index">Продукти</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Order" asp-action="MyOrders">Моите поръчки</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Cart" asp-action="Index">Количка</a>
+                        </li>
 
                         <!-- БРАНДОВЕ -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Марки</a>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Марки</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Mikasa">MIKASA</a></li>
-                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Molten">MOLTEN</a></li>
-                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Asics">ASICS</a></li>
-                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Mizuno">MIZUNO</a></li>
-                                <li><a class="dropdown-item" asp-route-searchStringBrandName="Nike">NIKE</a></li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringBrandName="Mikasa">
+                                        MIKASA
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringBrandName="Molten">
+                                        MOLTEN
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringBrandName="Asics">
+                                        ASICS
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringBrandName="Mizuno">
+                                        MIZUNO
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringBrandName="Nike">
+                                        NIKE
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
@@ -179,8 +221,7 @@
 
     <footer>
         <div class="container">
-            &copy; 2026 VolleyballShop |
-            <a asp-controller="Home" asp-action="Privacy">Поверителност</a>
+            VolleyballShop 
         </div>
     </footer>
 

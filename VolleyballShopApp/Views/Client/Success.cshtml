@@ -2,7 +2,62 @@
     ViewData["Title"] = "Success";
 }
 
-<h1>You successfully removed a product!</h1>
-<div>
-    <a asp-action="Index">Back to List</a>
+<style>
+    .success-box {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 50px 30px;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        margin-top: 40px;
+    }
+
+    .success-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+    }
+
+    .success-title {
+        color: #0a1f44;
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .success-text {
+        color: #6c757d;
+        margin-bottom: 25px;
+        font-size: 18px;
+    }
+
+    .success-btn {
+        background-color: #ffd60a;
+        color: black;
+        border: none;
+        font-weight: bold;
+        padding: 12px 26px;
+        border-radius: 30px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .success-btn:hover {
+            background-color: #e6c200;
+            color: black;
+        }
+</style>
+
+<div class="success-box">
+
+    <div class="success-icon">✅</div>
+
+    <h1 class="success-title">You successfully removed a product!</h1>
+
+    <p class="success-text">
+        Операцията беше извършена успешно.
+    </p>
+
+    <div>
+        <a asp-action="Index" class="success-btn">Back to List</a>
+    </div>
+
 </div>

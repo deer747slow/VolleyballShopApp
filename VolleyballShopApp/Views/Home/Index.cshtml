@@ -2,63 +2,151 @@
     ViewData["Title"] = "Начало";
 }
 
-<div class="container-fluid px-0">
-    <!-- Тъмен фон за цялото съдържание под hero -->
-    <div class="bg-dark py-5">
-        <div class="container">
+<style>
+    .home-wrapper {
+        padding: 10px 0 30px 0;
+    }
 
-            <!-- Welcome секция -->
-            <div class="text-center mb-5">
-                <h1 class="display-4 fw-bold text-white mb-3">
-                    Добре дошли във <span class="text-warning">VolleyballShop</span>
-                </h1>
-                <p class="lead text-light fs-3">
-                    Професионално волейболно оборудване за всеки играч
-                </p>
+    .welcome-box {
+        background: linear-gradient(135deg, #0a1f44, #123a7a);
+        border-radius: 20px;
+        padding: 50px 30px;
+        text-align: center;
+        margin-bottom: 35px;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+    }
+
+        .welcome-box h1 {
+            color: white;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .welcome-box p {
+            color: #e9ecef;
+            margin-bottom: 0;
+        }
+
+    .feature-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        height: 100%;
+        text-align: center;
+        padding: 30px 20px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+        }
+
+    .feature-icon {
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+
+    .feature-card h4 {
+        color: #0a1f44;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .feature-card p {
+        color: #6c757d;
+        margin-bottom: 0;
+    }
+
+    .cta-box {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 45px 30px;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        margin-top: 10px;
+    }
+
+        .cta-box h2 {
+            color: #0a1f44;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-box p {
+            color: #6c757d;
+            max-width: 800px;
+            margin: 0 auto 25px auto;
+        }
+
+    .cta-btn {
+        background-color: #ffd60a;
+        color: black;
+        border: none;
+        font-weight: bold;
+        padding: 12px 28px;
+        border-radius: 30px;
+        text-decoration: none;
+        display: inline-block;
+        transition: 0.2s ease;
+    }
+
+        .cta-btn:hover {
+            background-color: #e6c200;
+            color: black;
+        }
+
+    .brand-highlight {
+        color: #ffd60a;
+    }
+</style>
+
+<div class="home-wrapper">
+
+    <div class="welcome-box">
+        <h1 class="display-4">
+            Добре дошли във <span class="brand-highlight">VolleyballShop</span>
+        </h1>
+        <p class="lead fs-4">
+            Професионално волейболно оборудване за всеки играч
+        </p>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">🏐</div>
+                <h4>Високо качество</h4>
+                <p>Оригинални продукти от топ марки</p>
             </div>
+        </div>
 
-            <!-- Три предимства -->
-            <div class="row g-4 mb-5">
-                <div class="col-md-4">
-                    <div class="card bg-dark border border-secondary shadow h-100 text-center p-4">
-                        <div class="mb-3 text-warning">
-                            <i class="fas fa-volleyball-ball fa-3x"></i>
-                        </div>
-                        <h4 class="text-white">Високо качество</h4>
-                        <p class="text-light-emphasis">Оригинални продукти от топ марки</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-dark border border-secondary shadow h-100 text-center p-4">
-                        <div class="mb-3 text-warning">
-                            <i class="fas fa-truck fa-3x"></i>
-                        </div>
-                        <h4 class="text-white">Бърза доставка</h4>
-                        <p class="text-light-emphasis">До 2-3 работни дни в цялата страна</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-dark border border-secondary shadow h-100 text-center p-4">
-                        <div class="mb-3 text-warning">
-                            <i class="fas fa-shield-alt fa-3x"></i>
-                        </div>
-                        <h4 class="text-white">Гаранция</h4>
-                        <p class="text-light-emphasis">2 години гаранция на всички продукти</p>
-                    </div>
-                </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h4>Бърза доставка</h4>
+                <p>До 2-3 работни дни в цялата страна</p>
             </div>
+        </div>
 
-            <!-- Призив за действие -->
-            <div class="bg-gradient p-5 rounded-4 text-center border border-secondary">
-                <h2 class="text-white mb-4">Готов ли си за следващия мач?</h2>
-                <p class="lead text-light mb-4">
-                    Разгледай нашата широка гама от волейболни топки, обувки, наколенки и екипировка.
-                </p>
-                <a asp-controller="Product" asp-action="Index" class="btn brand-btn btn-lg px-5 py-3 fs-5">
-                    <i class="fas fa-shopping-bag"></i> Започни пазаруване сега
-                </a>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h4>Гаранция</h4>
+                <p>2 години гаранция на всички продукти</p>
             </div>
-
         </div>
     </div>
+
+    <div class="cta-box">
+        <h2>Готов ли си за следващия мач?</h2>
+        <p class="lead">
+            Разгледай нашата широка гама от волейболни топки, обувки, наколенки и екипировка.
+        </p>
+        <a asp-controller="Product" asp-action="Index" class="cta-btn">
+            Започни пазаруване сега
+        </a>
+    </div>
+
 </div>

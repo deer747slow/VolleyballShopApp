@@ -2,114 +2,137 @@
     ViewData["Title"] = "Контакти";
 }
 
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
+<style>
+    .contact-page {
+        padding: 20px 0 40px 0;
+    }
 
-            <div class="text-center mb-5">
-                <h1 class="display-5 fw-bold text-white mb-3">
-                    <i class="fas fa-envelope text-warning me-3"></i>
-                    Свържете се с нас
-                </h1>
-                <p class="lead text-light-emphasis">
-                    Имаме въпроси? Готови сме да ви помогнем!
-                </p>
-            </div>
+    .contact-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
 
-            <div class="row g-5">
+        .contact-header h1 {
+            color: #0a1f44;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
 
-                <!-- Контактна информация -->
-                <div class="col-lg-5">
-                    <div class="card bg-dark border-0 shadow-lg h-100">
-                        <div class="card-body p-5">
-                            <h4 class="text-warning mb-4">Контактна информация</h4>
+        .contact-header p {
+            color: #6c757d;
+            font-size: 18px;
+        }
 
-                            <div class="d-flex mb-4">
-                                <i class="fas fa-map-marker-alt fa-2x text-warning me-4 mt-1"></i>
-                                <div>
-                                    <strong class="text-light">Адрес:</strong><br>
-                                    <span class="text-light-emphasis">София, бул. "Витоша" 123, ет. 3</span>
-                                </div>
-                            </div>
+    .contact-card {
+        background: #ffffff;
+        border-radius: 18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        height: 100%;
+        padding: 30px;
+    }
 
-                            <div class="d-flex mb-4">
-                                <i class="fas fa-phone fa-2x text-warning me-4 mt-1"></i>
-                                <div>
-                                    <strong class="text-light">Телефон:</strong><br>
-                                    <a href="tel:0888123456" class="text-light-emphasis text-decoration-none">0888 123 456</a>
-                                </div>
-                            </div>
+        .contact-card h4 {
+            color: #0a1f44;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
 
-                            <div class="d-flex mb-4">
-                                <i class="fas fa-envelope fa-2x text-warning me-4 mt-1"></i>
-                                <div>
-                                    <strong class="text-light">Имейл:</strong><br>
-                                    <a href="mailto:info@volleyballshop.bg" class="text-light-emphasis text-decoration-none">info@volleyballshop.bg</a>
-                                </div>
-                            </div>
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 22px;
+    }
 
-                            <div class="d-flex">
-                                <i class="fas fa-clock fa-2x text-warning me-4 mt-1"></i>
-                                <div>
-                                    <strong class="text-light">Работно време:</strong><br>
-                                    <span class="text-light-emphasis">Пон - Пет: 9:00 - 18:00</span><br>
-                                    <span class="text-light-emphasis">Събота: 10:00 - 14:00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    .contact-icon {
+        font-size: 28px;
+        width: 40px;
+        text-align: center;
+    }
 
-                <!-- Форма за контакт -->
-                <div class="col-lg-7">
-                    <div class="card bg-dark border-0 shadow-lg">
-                        <div class="card-body p-5">
-                            <h4 class="text-white mb-4">Изпратете ни съобщение</h4>
+    .contact-item strong {
+        color: #0a1f44;
+    }
 
-                            <form asp-action="Contact" asp-controller="Home" method="post">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label text-light">Име</label>
-                                        <input type="text" name="Name" class="form-control bg-dark text-light border-secondary" required />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label text-light">Имейл</label>
-                                        <input type="email" name="Email" class="form-control bg-dark text-light border-secondary" required />
-                                    </div>
+    .contact-item span,
+    .contact-item a {
+        color: #6c757d;
+        text-decoration: none;
+    }
 
-                                    <div class="col-12">
-                                        <label class="form-label text-light">Тема</label>
-                                        <input type="text" name="Subject" class="form-control bg-dark text-light border-secondary" required />
-                                    </div>
+    .map-frame {
+        border-radius: 14px;
+        overflow: hidden;
+    }
+</style>
 
-                                    <div class="col-12">
-                                        <label class="form-label text-light">Съобщение</label>
-                                        <textarea name="Message" rows="6"
-                                                  class="form-control bg-dark text-light border-secondary"
-                                                  required></textarea>
-                                    </div>
-                                </div>
+<div class="contact-page">
 
-                                <div class="d-grid mt-4">
-                                    <button type="submit" class="btn brand-btn btn-lg py-3">
-                                        <i class="fas fa-paper-plane"></i> Изпрати съобщение
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Google Maps (пример) -->
-            <div class="mt-5">
-                <h4 class="text-white mb-3">Как да ни намерите</h4>
-                <div class="ratio ratio-16x9 rounded-4 overflow-hidden border border-secondary">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.5!2d23.32!3d42.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDQyJzAwLjAiTiAyM8KwMTknMTIuMCJF!5e0!3m2!1sbg!2sbg!4v123456789"
-                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-
-        </div>
+    <div class="contact-header">
+        <h1>📩 Свържете се с нас</h1>
+        <p>Имаш въпроси? Готови сме да ти помогнем.</p>
     </div>
+
+    <div class="row g-4">
+
+        <!-- ЛЯВО: Информация -->
+        <div class="col-lg-5">
+            <div class="contact-card">
+
+                <h4>Контактна информация</h4>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Адрес:</strong><br />
+                        <span>Монте Карло, ул. „8-ми март“ 232, Перник</span>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <strong>Телефон:</strong><br />
+                        <a href="tel:0888123456">0888 123 456</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <strong>Имейл:</strong><br />
+                        <a href="mailto:info@volleyballshop.bg">info@volleyballshop.bg</a>
+                    </div>
+                </div>
+
+                <div class="contact-item mb-0">
+                    <div class="contact-icon">🕒</div>
+                    <div>
+                        <strong>Работно време:</strong><br />
+                        <span>Пон - Пет: 9:00 - 18:00</span><br />
+                        <span>Събота: 10:00 - 14:00</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ДЯСНО: КАРТА -->
+        <div class="col-lg-7">
+            <div class="contact-card">
+
+                <h4>Как да ни намерите</h4>
+
+                <div class="ratio ratio-16x9 map-frame">
+                    <iframe src="https://www.google.com/maps?q=8-mi%20mart%20232%20Pernik&output=embed"
+                            width="100%" height="450" style="border:0;"
+                            allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
