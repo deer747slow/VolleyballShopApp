@@ -1,11 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using VolleyballShopApp.Core.Contracts;
 using VolleyballShopApp.Infrastructure.Data;
 using VolleyballShopApp.Infrastructure.Data.Entities;
@@ -16,7 +9,7 @@ namespace VolleyballShopApp.Core.Services
     {
         private readonly ApplicationDbContext _context;
 
-       public FavoriteService(ApplicationDbContext context)
+        public FavoriteService(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -40,13 +33,16 @@ namespace VolleyballShopApp.Core.Services
                 UserId = userId
             });
 
-            return _context.SaveChanges() != 0;
+            return _context.SaveChanges() > 0;
         }
 
         public List<Favorite> GetFavorites(string userId)
         {
             return _context.Favorites
                 .Include(f => f.Product)
+                .ThenInclude(p => p.Brand)
+                .Include(f => f.Product)
+                .ThenInclude(p => p.Category)
                 .Where(f => f.UserId == userId)
                 .ToList();
         }
@@ -60,13 +56,15 @@ namespace VolleyballShopApp.Core.Services
         public bool RemoveFromFavorites(string userId, int productId)
         {
             var item = _context.Favorites
-        .SingleOrDefault(f => f.ProductId == productId && f.UserId == userId);
+                .FirstOrDefault(f => f.ProductId == productId && f.UserId == userId);
 
-            if (item == null) return false;
+            if (item == null)
+            {
+                return false;
+            }
 
             _context.Favorites.Remove(item);
-            return _context.SaveChanges() != 0;
-
+            return _context.SaveChanges() > 0;
         }
     }
 }

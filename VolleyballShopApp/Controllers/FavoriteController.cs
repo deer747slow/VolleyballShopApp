@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
 using VolleyballShopApp.Core.Contracts;
-using VolleyballShopApp.Infrastructure.Data;
-using VolleyballShopApp.Infrastructure.Data.Entities;
 using VolleyballShopApp.Models.Product;
 
 namespace VolleyballShopApp.Controllers
@@ -22,65 +17,57 @@ namespace VolleyballShopApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity!.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            List<ProductIndexVM> products = favoritesService.GetFavorites(userId) 
-                .Select(product => new ProductIndexVM
-            {
-                Id = product.ProductId,
-                ProductName = product.Product.ProductName,               
-                BrandName = product.Product.Brand.BrandName,
-                CategoryName = product.Product.Category.CategoryName,
-                Picture = product.Product.Picture,
-                Quantity = product.Product.Quantity,
-                Price = product.Product.Price,
-                Discount = product.Product.Discount
-                }).ToList();
+            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+
+            List<ProductIndexVM> products = favoritesService.GetFavorites(userId)
+                .Select(f => new ProductIndexVM
+                {
+                    Id = f.ProductId,
+                    ProductName = f.Product.ProductName,
+                    BrandName = f.Product.Brand.BrandName,
+                    CategoryName = f.Product.Category.CategoryName,
+                    Picture = f.Product.Picture,
+                    Description = f.Product.Description,
+                    Quantity = f.Product.Quantity,
+                    Price = f.Product.Price,
+                    Discount = f.Product.Discount
+                })
+                .ToList();
+
             return View(products);
         }
 
         [HttpPost]
         public IActionResult Add(int productId)
         {
-            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity!.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
             }
 
+            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier)!;
 
-            bool isInFavorites = favoritesService.IsFavorite(userId, productId);
+            favoritesService.AddToFavorites(userId, productId);
 
-            if (!isInFavorites)
-            {
-               favoritesService.AddToFavorites(userId, productId);
-            }
-
-            return RedirectToAction(nameof(Index));
-
+            return RedirectToAction("Index", "Product");
         }
 
         [HttpPost]
         public IActionResult Remove(int productId)
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity!.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier)!;
 
-
-
-            bool isInFavorites = favoritesService.IsFavorite(userId, productId);
-            if (isInFavorites)
-            {
-                favoritesService.RemoveFromFavorites(userId, productId);
-            }
+            favoritesService.RemoveFromFavorites(userId, productId);
 
             return RedirectToAction(nameof(Index));
         }

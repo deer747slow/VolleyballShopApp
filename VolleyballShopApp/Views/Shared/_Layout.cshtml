@@ -65,6 +65,7 @@
 
             .btn-main:hover {
                 background-color: #e6c200;
+                color: black;
             }
 
         /* DROPDOWN */
@@ -92,7 +93,6 @@
             footer a {
                 color: #ffd60a;
             }
-
     </style>
 </head>
 
@@ -106,7 +106,7 @@
                     🏐 VolleyballShop
                 </a>
 
-                <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#nav">
+                <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
                     ☰
                 </button>
 
@@ -130,61 +130,29 @@
                             <a class="nav-link" asp-controller="Order" asp-action="MyOrders">Моите поръчки</a>
                         </li>
 
-                        <!-- БРАНДОВЕ -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Favorites" asp-action="Index">Любими</a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Марки</a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-controller="Product"
-                                       asp-action="Index"
-                                       asp-route-searchStringBrandName="Mikasa">
-                                        MIKASA
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-controller="Product"
-                                       asp-action="Index"
-                                       asp-route-searchStringBrandName="Molten">
-                                        MOLTEN
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-controller="Product"
-                                       asp-action="Index"
-                                       asp-route-searchStringBrandName="Asics">
-                                        ASICS
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-controller="Product"
-                                       asp-action="Index"
-                                       asp-route-searchStringBrandName="Mizuno">
-                                        MIZUNO
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-controller="Product"
-                                       asp-action="Index"
-                                       asp-route-searchStringBrandName="Nike">
-                                        NIKE
-                                    </a>
-                                </li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Mikasa">MIKASA</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Molten">MOLTEN</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Asics">ASICS</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Mizuno">MIZUNO</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Nike">NIKE</a></li>
                             </ul>
                         </li>
 
                         @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Админ</a>
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Админ</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/Client/Index">Клиенти</a></li>
-                                    <li><a class="dropdown-item" href="/Order/Index">Поръчки</a></li>
-                                    <li><a class="dropdown-item" href="/Statistic/Index">Статистика</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Client" asp-action="Index">Клиенти</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Order" asp-action="Index">Поръчки</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Statistic" asp-action="Index">Статистика</a></li>
                                 </ul>
                             </li>
                         }
@@ -200,14 +168,16 @@
 
     <div class="container">
 
-        <!-- HERO -->
-        <div class="hero">
-            <h1>Играй като професионалист 🏐</h1>
-            <p>Най-добрата екипировка за волейбол на едно място</p>
-            <a href="/Product" class="btn btn-main mt-3">Разгледай продуктите</a>
-        </div>
+        @if (ViewContext.RouteData.Values["controller"]?.ToString() == "Home" &&
+                ViewContext.RouteData.Values["action"]?.ToString() == "Index")
+        {
+            <div class="hero">
+                <h1>Играй като професионалист 🏐</h1>
+                <p>Най-добрата екипировка за волейбол на едно място</p>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-main mt-3">Разгледай продуктите</a>
+            </div>
+        }
 
-        <!-- СЪДЪРЖАНИЕ -->
         <div class="content-box">
             <main>
                 @RenderBody()
@@ -218,7 +188,7 @@
 
     <footer>
         <div class="container">
-            VolleyballShop 
+            VolleyballShop |
         </div>
     </footer>
 

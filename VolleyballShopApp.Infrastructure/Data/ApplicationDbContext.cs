@@ -15,7 +15,7 @@ namespace VolleyballShopApp.Infrastructure.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<Favorite> Favorites { get; set; } = null!;
 
     }
 }

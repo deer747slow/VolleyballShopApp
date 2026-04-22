@@ -40,7 +40,7 @@ namespace VolleyballShopApp
             builder.Services.AddTransient<IProductService, ProductService>();
             builder.Services.AddTransient<IOrderService, OrderService>();
             builder.Services.AddTransient<IStatisticService, StatisticService>();
-            builder.Services.AddTransient<IFavoriteService, FavoriteService>();
+            builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 
 
             var app = builder.Build();
