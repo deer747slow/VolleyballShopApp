@@ -61,7 +61,8 @@
 
     .product-description {
         color: #555;
-        min-height: 48px;
+        min-height: 60px;
+        margin-bottom: 10px;
     }
 
     .product-price {
@@ -188,12 +189,16 @@
                     <p class="product-meta">@item.BrandName | @item.CategoryName</p>
 
                     <p class="product-description">
-                        @(item.Description?.Length > 80 ? item.Description.Substring(0, 80) + "..." : item.Description)
-                    </p>
+                        @(string.IsNullOrWhiteSpace(item.Description)
+                                            ? "Няма описание за този продукт."
+                                            : (item.Description.Length > 80
+                                            ? item.Description.Substring(0, 80) + "..."
+                                            : item.Description))
+                </p>
 
                     <p class="product-price mt-auto">
                         @item.Price лв.
-                        @if (item.Discount > 0)
+                    @if (item.Discount > 0)
                         {
                             <span class="discount-text">(-@item.Discount%)</span>
                         }
@@ -227,7 +232,6 @@
                             ❤️ Любими
                         </button>
                     </form>
-                    
                 </div>
             </div>
         </div>

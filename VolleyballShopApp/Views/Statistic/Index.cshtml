@@ -1,87 +1,93 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using VolleyballShopApp.Infrastructure.Data.Entities
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+﻿@using VolleyballShopApp.Models.Statistic
+@model StatisticVM
+@{
+    ViewData["Title"] = "Statistics";
+}
 
 <style>
-    .login-partial-wrap {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+    .statistics-title {
+        color: #0a1f44;
+        font-weight: 800;
+        margin-bottom: 25px;
+        font-size: 2rem;
     }
 
-    .login-partial-user {
-        color: white !important;
-        font-weight: 500;
-        text-decoration: none;
-        white-space: nowrap;
-        font-size: 15px;
+    .statistics-box {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+        margin-top: 20px;
     }
 
-        .login-partial-user:hover {
-            color: #ffd60a !important;
+    .statistics-summary {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+
+    .statistics-card {
+        background: linear-gradient(135deg, #0a1f44, #123a7a);
+        color: white;
+        border-radius: 18px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 6px 16px rgba(10,31,68,0.18);
+        transition: 0.2s ease;
+    }
+
+        .statistics-card:hover {
+            transform: translateY(-4px);
         }
 
-    .logout-small-btn {
-        background: transparent;
-        border: 1px solid #ffd60a;
-        color: #ffd60a;
-        border-radius: 20px;
-        padding: 5px 12px;
+    .statistics-card-title {
         font-size: 14px;
         font-weight: 600;
+        margin-bottom: 10px;
+        opacity: 0.95;
     }
 
-        .logout-small-btn:hover {
-            background: #ffd60a;
-            color: black;
-        }
-
-    .auth-link {
-        color: white !important;
-        font-weight: 500;
-        text-decoration: none;
-        margin-left: 10px;
-    }
-
-        .auth-link:hover {
-            color: #ffd60a !important;
-        }
-
-    .logout-form-inline {
+    .statistics-card-value {
+        font-size: 28px;
+        font-weight: 800;
         margin: 0;
+    }
+
+    .statistics-wrapper {
+        display: flex;
+        justify-content: center;
     }
 </style>
 
-<ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <li class="nav-item">
-            <div class="login-partial-wrap">
-                <a class="login-partial-user"
-                   asp-area="Identity"
-                   asp-page="/Account/Manage/Index"
-                   title="Manage">
-                    @User.Identity?.Name
-                </a>
+<h4 class="text-center statistics-title">📊 Statistic</h4>
 
-                <form class="logout-form-inline"
-                      asp-area="Identity"
-                      asp-page="/Account/Logout"
-                      asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"
-                      method="post">
-                    <button type="submit" class="logout-small-btn">Изход</button>
-                </form>
+<div class="statistics-wrapper">
+    <div class="col-xl-8">
+        <div class="statistics-box">
+
+            <div class="statistics-summary">
+                <div class="statistics-card">
+                    <div class="statistics-card-title">@Html.DisplayNameFor(model => model.CountClients)</div>
+                    <p class="statistics-card-value">@Html.DisplayFor(model => model.CountClients)</p>
+                </div>
+
+                <div class="statistics-card">
+                    <div class="statistics-card-title">@Html.DisplayNameFor(model => model.CountProducts)</div>
+                    <p class="statistics-card-value">@Html.DisplayFor(model => model.CountProducts)</p>
+                </div>
+
+                <div class="statistics-card">
+                    <div class="statistics-card-title">@Html.DisplayNameFor(model => model.CountOrders)</div>
+                    <p class="statistics-card-value">@Html.DisplayFor(model => model.CountOrders)</p>
+                </div>
+
+                <div class="statistics-card">
+                    <div class="statistics-card-title">@Html.DisplayNameFor(model => model.SumOrders)</div>
+                    <p class="statistics-card-value">@Html.DisplayFor(model => model.SumOrders)</p>
+                </div>
             </div>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="auth-link" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
-        </li>
-        <li class="nav-item">
-            <a class="auth-link" asp-area="Identity" asp-page="/Account/Login">Вход</a>
-        </li>
-    }
-</ul>
+
+        </div>
+    </div>
+</div>
